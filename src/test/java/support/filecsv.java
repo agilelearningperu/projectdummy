@@ -12,13 +12,25 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class filecsv {
-    private static String path = "src\\test\\resources\\Files\\";
+
+    public static String nombre;
+    public static String apellido;
+    public static String telefono;
+    public static String pais;
+    public static String ciudad;
+    public static String email;
+    public static String genero;
+    public static String dias;
+    public static String tiempo;
+    public static String archivo;
+
+    private static String path = "src/test/resources/data/";
 
     public static void escribirCSV(String name_file) throws IOException {
         String File = path+name_file+".csv";
         try (
                 BufferedWriter writer = Files.newBufferedWriter(Paths.get(File));
-                CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Nro Tarjeta", "CVV", "Mes", "Año"));
+                CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Nombre","Apellidos","Telefono","Pais","Ciudad","Email","Genero","Dias","Tiempo","Archivo"));
         ){
             csvPrinter.printRecord();
         }
@@ -29,15 +41,21 @@ public class filecsv {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(File));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
-                        .withHeader("Nro Tarjeta", "CVV", "Mes", "Año")
+                        .withHeader("Nombre","Apellido","Telefono","Pais","Ciudad","Email","Genero","Dias","Tiempo","Archivo")
                         .withIgnoreHeaderCase()
                         .withTrim());
         ) {
             for (CSVRecord csvRecord : csvParser) {
-               /* TarjetaPage.tarjeta = csvRecord.get("Nro Tarjeta");
-                TarjetaPage.cvv = csvRecord.get("CVV");
-                TarjetaPage.mes = csvRecord.get("Mes");
-                TarjetaPage.anio = csvRecord.get("Año");*/
+                nombre = csvRecord.get("Nombre");
+                apellido = csvRecord.get("Apellido");
+                telefono = csvRecord.get("Telefono");
+                pais = csvRecord.get("Pais");
+                ciudad = csvRecord.get("Ciudad");
+                email = csvRecord.get("Email");
+                genero = csvRecord.get("Genero");
+                dias = csvRecord.get("Dias");
+                tiempo = csvRecord.get("Tiempo");
+                archivo = csvRecord.get("Archivo");
             }
         }
     }
