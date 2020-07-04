@@ -26,16 +26,6 @@ public class filecsv {
 
     private static String path = "src/test/resources/data/";
 
-    public static void escribirCSV(String name_file) throws IOException {
-        String File = path+name_file+".csv";
-        try (
-                BufferedWriter writer = Files.newBufferedWriter(Paths.get(File));
-                CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Nombre","Apellidos","Telefono","Pais","Ciudad","Email","Genero","Dias","Tiempo","Archivo"));
-        ){
-            csvPrinter.printRecord();
-        }
-    }
-
     public static void leerCSV(String name_file) throws IOException{
         String File = path+name_file+".csv";
         try (

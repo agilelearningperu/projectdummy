@@ -13,7 +13,7 @@ public class hooks {
     @BeforeClass
     public static void SetUp(){
         if (navegador.equals("chrome")){
-            System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+            System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
         }else if (navegador.equals("firefox")){

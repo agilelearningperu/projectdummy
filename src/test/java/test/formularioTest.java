@@ -2,15 +2,21 @@ package test;
 
 import org.junit.Test;
 import pageobjects.formularioPage;
+import pageobjects.lateralPage;
 import support.filecsv;
+import support.frameworkBase;
 
 import java.io.IOException;
 
+import static support.evidencia.screenshot;
+
 public class formularioTest extends hooks{
 formularioPage formulario;
+lateralPage lateral;
 
     public formularioTest() {
         formulario = new formularioPage();
+        lateral = new lateralPage();
     }
 
     @Test
@@ -26,7 +32,7 @@ formularioPage formulario;
         formulario.seleccionarGenero("masculino");
         formulario.seleccionarDias("Monday,Friday,Saturday");
         formulario.seleccionarTiempo("Afternoon");
-        formulario.ingresarArchivo("/Users/saris/Desktop/ALEXANDER/R2D2.jpg");
+        formulario.ingresarArchivo("D:\\ALP - Agile Learning Perú\\Cursos\\Proyectos\\projectdummy\\src\\test\\resources\\data\\dataTest1.csv");
         formulario.clickSubmit();
     }
 
@@ -45,6 +51,15 @@ formularioPage formulario;
         formulario.seleccionarDias(filecsv.dias);
         formulario.seleccionarTiempo(filecsv.tiempo);
         formulario.ingresarArchivo(filecsv.archivo);
+        screenshot();
         formulario.clickSubmit();
+    }
+
+    @Test
+    public void TestAlert(){
+        driver.get("http://testautomationpractice.blogspot.com/");
+        lateral.clickAlert();
+        lateral.aceptarAlerta();
+        lateral.validarMensaje("You pressed OK!");
     }
 }

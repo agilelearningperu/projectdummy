@@ -61,7 +61,7 @@ public class formularioPage extends frameworkBase {
     }
 
     public void seleccionarDias(String dias){
-        String[] dia = dias.split(",");
+        String[] dia = dias.split("-");
         for (int i = 0; i < dia.length ; i++){
             driver.findElement(By.xpath("//*[text()='"+dia[i]+"']")).click();
         }
@@ -88,6 +88,7 @@ public class formularioPage extends frameworkBase {
 //    }
 
     public void clickSubmit(){
+        wait.until(ExpectedConditions.elementToBeClickable(btn_submit));
         btn_submit.click();
     }
 }
